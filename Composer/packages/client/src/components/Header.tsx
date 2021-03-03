@@ -220,8 +220,6 @@ export const Header = () => {
     }
   };
 
-  console.log(showStartBotsWidget, checkForPVASchema(schemas.sdk));
-
   return (
     <div css={headerContainer} role="banner">
       <img
