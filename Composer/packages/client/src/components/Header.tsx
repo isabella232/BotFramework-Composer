@@ -168,8 +168,10 @@ export const Header = () => {
 
   useEffect(() => {
     // hide it on the /home page, but make sure not to hide on /bot/stuff/home in case someone names a dialog "home"
-    const hideCondition = !pathname.endsWith('/home') || pathname.includes('/bot/');
-    setStartBotsWidgetVisible(hideCondition);
+    const hideCondition =
+      !pathname.includes('/bot/') &&
+      (pathname.endsWith('/home') || pathname.endsWith('/projects/open') || pathname.endsWith('/projects/create'));
+    setStartBotsWidgetVisible(!hideCondition);
     if (!hideCondition) {
       setWebChatPanelVisibility(false);
     }
@@ -217,6 +219,8 @@ export const Header = () => {
       setTeachingBubbleVisibility(true);
     }
   };
+
+  console.log(showStartBotsWidget, checkForPVASchema(schemas.sdk));
 
   return (
     <div css={headerContainer} role="banner">
