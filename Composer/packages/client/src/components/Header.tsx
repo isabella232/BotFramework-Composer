@@ -167,10 +167,15 @@ export const Header = () => {
   } = useLocation();
 
   useEffect(() => {
-    // hide it on the /home page, but make sure not to hide on /bot/stuff/home in case someone names a dialog "home"
+    /**
+     * hide it on the /home /projects/* page, show it in /bot/*
+     * home: /home
+     * create: /projects/create
+     * open: /projects/open
+     * save as: /projects/{projectId}/{botName}/save
+     */
     const hideCondition =
-      !pathname.includes('/bot/') &&
-      (pathname.endsWith('/home') || pathname.endsWith('/projects/open') || pathname.endsWith('/projects/create'));
+      !pathname.includes('/bot/') && (pathname.endsWith('/home') || pathname.includes('/projects/'));
     setStartBotsWidgetVisible(!hideCondition);
     if (!hideCondition) {
       setWebChatPanelVisibility(false);
